@@ -3,6 +3,8 @@ package io.github.wilson.emmett.gitfinder
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
+import io.github.wilson.emmett.gitfinder.githubService.GithubApi
+import io.github.wilson.emmett.gitfinder.githubService.RepositoryDto
 import io.reactivex.Observable
 import org.junit.Test
 import retrofit2.Response
@@ -15,7 +17,10 @@ class GitRepositoryDtoRepositoryTest {
 
     @Test
     fun getUsersDelegatesToGithubApi() {
-        val list = listOf(RepositoryDto(), RepositoryDto())
+        val list = listOf(
+            mock<RepositoryDto>(),
+            mock<RepositoryDto>()
+            )
         val success : Response<List<RepositoryDto>> =  Response.success(200, list)
         whenever(githubApi.reposForOrganization(any())).thenReturn(Observable.just(success))
 

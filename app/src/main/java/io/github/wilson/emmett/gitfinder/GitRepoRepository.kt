@@ -1,5 +1,7 @@
 package io.github.wilson.emmett.gitfinder
 
+import io.github.wilson.emmett.gitfinder.githubService.GithubApi
+import io.github.wilson.emmett.gitfinder.githubService.RepositoryDto
 import io.reactivex.Observable
 
 class GitRepoRepository(private val githubApi: GithubApi) {

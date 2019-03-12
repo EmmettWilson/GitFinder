@@ -3,6 +3,7 @@ package io.github.wilson.emmett.gitfinder
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
+import io.github.wilson.emmett.gitfinder.githubService.RepositoryDto
 import io.reactivex.Observable
 import io.reactivex.schedulers.TestScheduler
 import org.junit.Test
@@ -15,7 +16,7 @@ class GitRepositoryDtoViewModelTest{
 
     @Test
     fun getReposReturnsValueOnMainThread() {
-        val expected = listOf(RepositoryDto())
+        val expected = listOf(mock<RepositoryDto>())
         whenever(gitRepoRepository.getRepositories(any())).thenReturn(Observable.just(expected))
 
         val testObserver = testObject.getRepositories().test()
