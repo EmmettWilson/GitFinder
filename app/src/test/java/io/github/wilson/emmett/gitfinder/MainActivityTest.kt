@@ -25,14 +25,4 @@ class MainActivityTest : AutoCloseKoinTest() {
             viewModel { gitRepoViewModel }
         }))
     }
-
-    @Test
-    fun textSetFromViewModel() {
-        val expectedText = "hello view-model"
-        `when`(gitRepoViewModel.getText()).thenReturn(expectedText)
-
-        val activity = Robolectric.setupActivity(MainActivity::class.java)
-
-        assertEquals(expectedText, activity.mainText.text)
-    }
 }

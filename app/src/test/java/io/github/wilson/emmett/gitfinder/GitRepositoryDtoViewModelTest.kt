@@ -19,7 +19,7 @@ class GitRepositoryDtoViewModelTest{
         val expected = listOf(mock<RepositoryDto>())
         whenever(gitRepoRepository.getRepositories(any())).thenReturn(Observable.just(expected))
 
-        val testObserver = testObject.getRepositories().test()
+        val testObserver = testObject.getRepositories(string).test()
 
         testObserver.assertNoValues()
             .assertNotComplete()
