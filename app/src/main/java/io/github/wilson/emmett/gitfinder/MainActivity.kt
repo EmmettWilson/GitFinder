@@ -7,7 +7,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    val gitRepoViewModel : GitRepoViewModel by viewModel()
+    private val gitRepoViewModel : GitRepoViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
