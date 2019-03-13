@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity(), Observer<List<GitRepo>> {
     override fun onChanged(repos: List<GitRepo>?) {
         if (repos == null || repos.isEmpty()) {
             emptyView.visible()
-            gitRepoRecycler.gone()
+            gitRepoRecycler.invisible()
         } else {
             emptyView.gone()
             gitRepoRecycler.visible()
