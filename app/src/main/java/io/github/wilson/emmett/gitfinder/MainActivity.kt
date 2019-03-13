@@ -1,9 +1,9 @@
 package io.github.wilson.emmett.gitfinder
 
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Parcelable
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -47,7 +47,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun showError(errorState: ErrorState) {
         Snackbar.make(activity_main_constraint, errorState.message, Snackbar.LENGTH_INDEFINITE).apply {
-            setActionTextColor(Color.WHITE)
+            setActionTextColor(ContextCompat.getColor(context, R.color.roseGold))
+            view.setBackgroundColor(ContextCompat.getColor(context, R.color.onyx))
             setAction(R.string.retry) {
                 errorSnackBar?.dismiss()
                 errorState.retryCommand.execute()
