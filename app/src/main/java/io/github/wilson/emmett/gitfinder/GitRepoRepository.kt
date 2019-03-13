@@ -14,13 +14,6 @@ class GitRepoRepository(private val githubApi: GithubApi,
 
     @SuppressLint("CheckResult")
     fun searchRepositories(organizationName: String) {
-        githubApi.reposForOrganization(organizationName)
-            .map { it.body() }
-            .map { repos -> repos.map{GitRepo.from(it)} }
-            .doOnNext{
-                database.clearAllTables()
-                database.repoDao().insertRepos(it)
-            }
-            .subscribe{}
+
     }
 }

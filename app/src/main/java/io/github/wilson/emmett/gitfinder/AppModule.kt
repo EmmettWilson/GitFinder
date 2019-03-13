@@ -16,5 +16,5 @@ val appModule = module {
         AndroidSchedulers.mainThread()
     }
 
-    viewModel { GitRepoViewModel(get()) }
+    viewModel { GitRepoViewModel(get(), get(), get(MAIN_THREAD_SCHEDULER)) }
 }

@@ -6,11 +6,19 @@ import org.koin.dsl.module.module
 
 val databaseModule = module {
 
-    factory {
+    single {
         Room.databaseBuilder(
             androidContext(),
             GithubRepoDatabase::class.java,
             "github_repo_database"
         ).build()
+    }
+
+    single {
+        Room.databaseBuilder(
+            androidContext(),
+            GithubRepoDatabase::class.java,
+            "github_repo_database"
+        ).build().repoDao()
     }
 }

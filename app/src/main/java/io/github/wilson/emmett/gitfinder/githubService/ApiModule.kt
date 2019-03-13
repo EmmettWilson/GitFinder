@@ -1,5 +1,6 @@
 package io.github.wilson.emmett.gitfinder.githubService
 
+import io.github.wilson.emmett.gitfinder.ErrorStateManager
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -28,4 +29,10 @@ val apiModule = module {
     single<GithubApi> {
         get<Retrofit>().create<GithubApi>(GithubApi::class.java)
     }
+
+    single{
+        ErrorStateManager()
+    }
+
+    single { SearchCommandFactory(get(), get(), get()) }
 }
