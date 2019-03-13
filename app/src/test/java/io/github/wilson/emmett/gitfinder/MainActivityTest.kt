@@ -32,12 +32,13 @@ class MainActivityTest : AutoCloseKoinTest() {
         loadKoinModules(listOf(module(override = true) {
             viewModel { gitRepoViewModel }
         }))
+        whenever(gitRepoViewModel.getErrorState()).thenReturn(MutableLiveData())
     }
 
     @Test
     fun emptyViewIsShown() {
         val mutableLiveData = MutableLiveData<List<GitRepo>>()
-        whenever(gitRepoViewModel.getRepositories()).thenReturn(mutableLiveData)
+        whenever(gitRepoViewModel.gitRepositories).thenReturn(mutableLiveData)
 
         val scenario = ActivityScenario.launch(MainActivity::class.java)
         scenario.moveToState(Lifecycle.State.RESUMED)
@@ -64,7 +65,7 @@ class MainActivityTest : AutoCloseKoinTest() {
     @Test
     fun repositoriesShown() {
         val mutableLiveData = MutableLiveData<List<GitRepo>>()
-        whenever(gitRepoViewModel.getRepositories()).thenReturn(mutableLiveData)
+        whenever(gitRepoViewModel.gitRepositories).thenReturn(mutableLiveData)
 
         val scenario = ActivityScenario.launch(MainActivity::class.java)
         scenario.moveToState(Lifecycle.State.RESUMED)

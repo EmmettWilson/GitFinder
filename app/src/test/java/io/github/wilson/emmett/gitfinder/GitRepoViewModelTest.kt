@@ -20,7 +20,7 @@ class GitRepoViewModelTest{
         val mutableLiveData = MutableLiveData<List<GitRepo>>()
         whenever(gitRepoRepository.getRepositories()).thenReturn(mutableLiveData)
 
-        val actual = testObject.getRepositories()
+        val actual = testObject.gitRepositories
 
         assertEquals(mutableLiveData, actual)
     }
