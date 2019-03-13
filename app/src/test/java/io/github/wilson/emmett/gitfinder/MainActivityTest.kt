@@ -36,7 +36,7 @@ class MainActivityTest : AutoCloseKoinTest() {
     }
 
     @Test
-    fun emptyViewIsShown() {
+    fun emptyViewIsShownWhenNoRepositories() {
         val mutableLiveData = MutableLiveData<List<GitRepo>>()
         whenever(gitRepoViewModel.gitRepositories).thenReturn(mutableLiveData)
 
@@ -52,18 +52,13 @@ class MainActivityTest : AutoCloseKoinTest() {
 
             onView(withId(R.id.gitRepoRecycler)).check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
             onView(withId(R.id.emptyView)).check(matches(withEffectiveVisibility(Visibility.GONE)))
-
-//            TODO: This does not seem to work. Is this a robolectric 4 bug or can we not use isDisplayed()?
-//            Expected :(is displayed on the screen to the user and with text: is "No Git Repositories Found")
-//            Actual   :"AppCompatTextView{id=2131165239, res-name=emptyViewMessage, visibility=VISIBLE, width=0, height=0, has-focus=false, has-focusable=false, has-window-focus=true, is-clickable=false, is-enabled=true, is-focused=false, is-focusable=false, is-layout-requested=false, is-selected=false, layout-params=android.widget.FrameLayout$LayoutParams@11d70e68, tag=null, root-is-layout-requested=false, has-input-connection=false, x=160.0, y=207.0, text=No Git Repositories Found, input-type=0, ime-target=false, has-links=false}"
-//            onView(withId(R.id.emptyViewMessage)).check(matches(allOf(isDisplayed(), withText(R.string.emptyText))))
-//            onView(withId(R.id.emptyViewMessage)).check(matches(allOf(isDisplayed(), withText("No Git Repositories Found"))))
-            onView(withId(R.id.emptyViewMessage)).check(matches(withText("No Git Repositories Found")))
+            onView(withId(R.id.emptyViewInstructions)).check(matches(withText(R.string.emptyTextInstructions)))
+            onView(withId(R.id.emptyViewMessage)).check(matches(withText(R.string.emptyTextMessage)))
         }
     }
 
     @Test
-    fun repositoriesShown() {
+    fun repositoriesListShownWhenViewModelReturnsRepositories() {
         val mutableLiveData = MutableLiveData<List<GitRepo>>()
         whenever(gitRepoViewModel.gitRepositories).thenReturn(mutableLiveData)
 
