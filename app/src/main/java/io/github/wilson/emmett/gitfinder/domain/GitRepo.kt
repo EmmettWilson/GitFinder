@@ -1,20 +1,33 @@
-package io.github.wilson.emmett.gitfinder.githubService
+package io.github.wilson.emmett.gitfinder.domain
 
 import androidx.annotation.Keep
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import io.github.wilson.emmett.gitfinder.githubService.RepositoryDto
 
 @Keep
-data class RepositoryDto(
-    val id: Long,
-    val name: String,
-    val full_name: String,
-    val html_url: String,
-    val open_issues: Int,
-    val watchers: Int,
-    val owner : OwnerDto,
-    val type : String){
+@Entity
+data class GitRepo(
+    @PrimaryKey var id: Long,
+    var name: String,
+    var full_name: String,
+    var html_url: String,
+    var watchers: Int
+) {
 
-    companion object
+    companion object {
+        fun from(dto: RepositoryDto): GitRepo {
+            return GitRepo(
+                dto.id,
+                dto.name,
+                dto.full_name,
+                dto.html_url,
+                dto.watchers
+            )
+        }
+    }
 }
+
 
 //{
 //    "id": 93515203,

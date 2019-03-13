@@ -7,12 +7,13 @@ import io.github.wilson.emmett.gitfinder.githubService.RepositoryDto
 import io.reactivex.Observable
 import io.reactivex.Scheduler
 
-class GitRepoViewModel(private val gitRepoRepository: GitRepoRepository,
-                       private val mainThread : Scheduler) : ViewModel() {
+class GitRepoViewModel(private val gitRepoRepository: GitRepoRepository) : ViewModel() {
 
     fun getRepositories(): LiveData<List<GitRepo>> {
         return gitRepoRepository.getRepositories()
     }
 
-    fun searchRepositories(string: String) =  gitRepoRepository.searchRepositories(string)
+    fun searchRepositories(string: String){
+       return gitRepoRepository.searchRepositories(string)
+    }
 }

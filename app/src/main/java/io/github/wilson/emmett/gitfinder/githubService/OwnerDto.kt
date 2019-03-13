@@ -9,7 +9,9 @@ data class OwnerDto (
     private val avatar_url : String,
     private val html_url : String,
     private val type : String
-)
+){
+    companion object
+}
 
 //[
 //{

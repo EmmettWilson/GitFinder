@@ -2,6 +2,7 @@ package io.github.wilson.emmett.gitfinder
 
 import android.os.Bundle
 import android.os.Parcelable
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,8 +42,11 @@ class MainActivity : AppCompatActivity(), Observer<List<GitRepo>> {
 
     override fun onChanged(repos: List<GitRepo>?) {
         if (repos == null || repos.isEmpty()) {
-
+            emptyView.visible()
+            gitRepoRecycler.gone()
         } else {
+            emptyView.gone()
+            gitRepoRecycler.visible()
             gitRepositoryRecyclerAdapter.setData(repos)
             gitRepoRecycler.scrollToPosition(0)
             gitRepoRecycler.layoutManager?.onRestoreInstanceState(layoutManagerSavedState)
@@ -51,4 +55,17 @@ class MainActivity : AppCompatActivity(), Observer<List<GitRepo>> {
     }
 
 }
+
+private fun View.visible() {
+    visibility = View.VISIBLE
+}
+
+private fun View.gone() {
+    visibility = View.GONE
+}
+
+private fun View.invisible() {
+    visibility = View.INVISIBLE
+}
+
 

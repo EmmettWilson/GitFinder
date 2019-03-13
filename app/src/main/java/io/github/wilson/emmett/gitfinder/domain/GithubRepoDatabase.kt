@@ -9,5 +9,5 @@ import androidx.room.RoomDatabase
 )
 abstract class GithubRepoDatabase : RoomDatabase() {
 
-    abstract fun gitRepoDao() : GitRepoDao
+    abstract fun repoDao() : GitRepoDao
 }
