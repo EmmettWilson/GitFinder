@@ -1,6 +1,9 @@
 package io.github.wilson.emmett.gitfinder
 
-import android.view.View.*
+import android.content.Intent
+import android.net.Uri
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.annotation.IdRes
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
@@ -21,6 +24,7 @@ import org.koin.dsl.module.module
 import org.koin.standalone.StandAloneContext.loadKoinModules
 import org.koin.test.AutoCloseKoinTest
 import org.koin.test.declareMock
+import org.robolectric.Shadows.shadowOf
 
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest : AutoCloseKoinTest() {
@@ -75,6 +79,27 @@ class MainActivityTest : AutoCloseKoinTest() {
 
             assertRecyclerHasCount(R.id.gitRepoRecycler, 3)
             assertRepoAtPosition(expected, 2)
+        }
+    }
+
+    @Test
+    fun repositoryClickLaunchesChromeTabForRepo() {
+        val mutableLiveData = MutableLiveData<List<GitRepo>>()
+        whenever(gitRepoViewModel.gitRepositories).thenReturn(mutableLiveData)
+
+        val scenario = ActivityScenario.launch(MainActivity::class.java)
+        scenario.moveToState(Lifecycle.State.RESUMED)
+
+        scenario.onActivity {
+
+            val expected = GitRepo.test()
+            mutableLiveData.postValue(listOf(GitRepo.test(), GitRepo.test(), expected))
+
+            it.gitRepoRecycler.findViewHolderForAdapterPosition(2)!!.itemView.performClick()
+
+            val startedActivity = shadowOf(it).peekNextStartedActivity()
+            assertEquals(Intent.ACTION_VIEW, startedActivity.action)
+            assertEquals(Uri.parse(expected.html_url), startedActivity.data)
         }
     }
 

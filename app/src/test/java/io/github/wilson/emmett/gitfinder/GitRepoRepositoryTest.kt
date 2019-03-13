@@ -36,13 +36,4 @@ class GitRepoRepositoryTest{
         assertEquals(expected, actual)
     }
 
-    @Test
-    fun searchRepositoriesCallsApiWithValue() {
-        val organizationName = "TestOrg"
-        whenever(githubApi.reposForOrganization(any())).thenReturn(Observable.never())
-        testObject.searchRepositories(organizationName)
-
-        verify(githubApi).reposForOrganization(organizationName)
-    }
-
 }
