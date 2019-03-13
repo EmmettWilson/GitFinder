@@ -6,11 +6,13 @@ import androidx.annotation.Keep
 data class RepositoryDto(
     val id: Long,
     val name: String,
+    val description: String?,
     val full_name: String,
     val html_url: String,
     val open_issues: Int,
     val watchers: Int,
     val owner : OwnerDto,
+    val language : String?,
     val type : String){
 
     companion object

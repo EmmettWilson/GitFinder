@@ -12,17 +12,22 @@ data class GitRepo(
     var name: String,
     var full_name: String,
     var html_url: String,
-    var watchers: Int
+    var watchers: Int,
+    var language: String,
+    var description: String
 ) {
 
     companion object {
+        //TODO Fetch these from resources for locale support
         fun from(dto: RepositoryDto): GitRepo {
             return GitRepo(
                 dto.id,
                 dto.name,
                 dto.full_name,
                 dto.html_url,
-                dto.watchers
+                dto.watchers,
+                dto.language?:"Unknown",
+                dto.description?:"No description provided"
             )
         }
     }

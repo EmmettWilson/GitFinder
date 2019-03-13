@@ -1,15 +1,15 @@
 package io.github.wilson.emmett.gitfinder
 
-import androidx.lifecycle.LiveDataReactiveStreams
+import android.util.Log
 import io.github.wilson.emmett.gitfinder.githubService.Command
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 
 class ErrorStateManager {
-    //TODO Consider RxRelay to allow subscribers to error, and keep subscription alive
     private val stateSubject = PublishSubject.create<ErrorState>()
 
     fun publishError(throwable: Throwable? = null, retryCommand: Command, defaultMessage: String) {
+        Log.e("", defaultMessage, throwable)
         val message = throwable?.message ?: defaultMessage
         stateSubject.onNext(ErrorState(message, retryCommand))
     }

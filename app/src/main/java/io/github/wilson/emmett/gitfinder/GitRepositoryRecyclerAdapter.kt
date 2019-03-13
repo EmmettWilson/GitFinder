@@ -24,12 +24,17 @@ class GitRepositoryRecyclerAdapter : RecyclerView.Adapter<RepoViewHolder>() {
     override fun getItemCount() = repos.size
 
     override fun onBindViewHolder(holder: RepoViewHolder, position: Int) {
-        holder.itemView.repoNameTextView.text = repos[position].full_name
+        holder.name.text = repos[position].full_name
+        holder.description.text = repos[position].description
+        holder.language.text = repos[position].language
+        holder.watchers.text = "${repos[position].watchers}"
     }
-
 }
 
 class RepoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    //TODo Hold access to item here so we do not do unnecessary lookups
+    val name =  itemView.repoName
+    val description = itemView.repoDescription
+    val language = itemView.languageText
+    val watchers = itemView.watchersText
 
 }

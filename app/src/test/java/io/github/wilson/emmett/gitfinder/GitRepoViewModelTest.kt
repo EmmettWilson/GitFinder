@@ -4,15 +4,16 @@ import androidx.lifecycle.MutableLiveData
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import io.github.wilson.emmett.gitfinder.domain.GitRepo
-import io.github.wilson.emmett.gitfinder.githubService.RepositoryDto
 import io.reactivex.schedulers.TestScheduler
-import junit.framework.Assert.assertEquals
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class GitRepoViewModelTest{
     private val gitRepoRepository = mock<GitRepoRepository>()
+    private val errorStateManager = ErrorStateManager()
+    private val mainThreadScheduler = TestScheduler()
 
-    private val testObject = GitRepoViewModel(gitRepoRepository)
+    private val testObject = GitRepoViewModel(gitRepoRepository, errorStateManager, mainThreadScheduler)
 
     @Test
     fun getReposDelegatesToRepository() {

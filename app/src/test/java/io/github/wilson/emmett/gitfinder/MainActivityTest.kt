@@ -87,7 +87,7 @@ class MainActivityTest : AutoCloseKoinTest() {
     }
 
     private fun assertRepoAtPosition(repo: GitRepo, position: Int) {
-        onView(withRecyclerView(R.id.gitRepoRecycler).atPositionOnView(position, R.id.repoNameTextView))
+        onView(withRecyclerView(R.id.gitRepoRecycler).atPositionOnView(position, R.id.repoName))
             .check(matches(withText(repo.full_name)))
     }
 

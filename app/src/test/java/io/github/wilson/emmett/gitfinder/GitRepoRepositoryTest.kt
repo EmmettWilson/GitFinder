@@ -45,17 +45,4 @@ class GitRepoRepositoryTest{
         verify(githubApi).reposForOrganization(organizationName)
     }
 
-    @Test
-    fun successfulSearchPopulatesDatabase() {
-        val organizationName = "TestOrg"
-        val repositoryDto = RepositoryDto.test()
-        whenever(githubApi.reposForOrganization(any())).thenReturn(Observable.just(Response.success(listOf(repositoryDto))))
-
-        testObject.searchRepositories(organizationName)
-
-        inOrder(database,repoDao) {
-            verify(database).clearAllTables()
-            verify(repoDao).insertRepos(listOf(GitRepo.from(repositoryDto)))
-        }
-    }
 }
