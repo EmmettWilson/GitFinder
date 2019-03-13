@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/silver</item>
         <item name="colorPrimaryDark">@color/onyx</item>
         <item name="colorAccent">@color/roseGold</item>
+        <item name="colorControlHighlight">@color/silver40</item>
     </style>
 
 </resources>

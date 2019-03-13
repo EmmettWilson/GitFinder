@@ -1,64 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="8dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_margin="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:foreground="?android:attr/selectableItemBackground">
 
-        <TextView
-            android:id="@+id/repoName"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="InsertKoinIO/Koin" />
+            android:orientation="vertical"
+            android:padding="16dp">
 
         <TextView
-            android:id="@+id/repoDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:drawablePadding="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/repoName"
-            app:layout_constraintBottom_toTopOf="@id/languageText"
-            tools:text="KOIN - a pragmatic lightweight dependency injection framework for Kotlin https://insert-koin.io/" />
+                android:id="@+id/repoName"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="InsertKoinIO/Koin"/>
 
         <TextView
-            android:id="@+id/languageText"
-            android:layout_marginTop="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_circle"
-            android:drawablePadding="4dp"
-            app:layout_constraintEnd_toStartOf="@id/watchersText"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/repoDescription"
-            tools:text="Kotlin" />
+                android:id="@+id/repoDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:drawablePadding="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/repoName"
+                app:layout_constraintBottom_toTopOf="@id/languageText"
+                tools:text="KOIN - a pragmatic lightweight dependency injection framework for Kotlin https://insert-koin.io/"/>
 
         <TextView
-            android:id="@+id/watchersText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:drawablePadding="4dp"
-            android:drawableStart="@drawable/ic_star"
-            android:gravity="center"
-            app:layout_constraintTop_toTopOf="@id/languageText"
-            app:layout_constraintStart_toEndOf="@id/languageText"
-            app:layout_constraintTop_toBottomOf="@id/repoDescription"
-            tools:text="9999" />
+                android:id="@+id/languageText"
+                android:layout_marginTop="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_circle"
+                android:drawablePadding="4dp"
+                app:layout_constraintEnd_toStartOf="@id/watchersText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/repoDescription"
+                tools:text="Kotlin"/>
+
+        <TextView
+                android:id="@+id/watchersText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:drawablePadding="4dp"
+                android:drawableStart="@drawable/ic_star"
+                android:gravity="center"
+                app:layout_constraintTop_toTopOf="@id/languageText"
+                app:layout_constraintStart_toEndOf="@id/languageText"
+                app:layout_constraintTop_toBottomOf="@id/repoDescription"
+                tools:text="9999"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

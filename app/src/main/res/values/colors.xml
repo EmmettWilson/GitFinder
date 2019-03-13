@@ -4,5 +4,6 @@
     <color name="roseGold">#bd8c7d</color>
     <color name="softGold">#d1bfa7</color>
     <color name="silver">#8e8e90</color>
+    <color name="silver40">#288e8e90</color>
     <color name="onyx">#49494b</color>
 </resources>
