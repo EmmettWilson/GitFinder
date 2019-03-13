@@ -14,7 +14,6 @@ import io.github.wilson.emmett.gitfinder.domain.GitRepo
 import kotlinx.android.synthetic.main.activity_main.*
 import org.junit.Assert.assertEquals
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.koin.androidx.viewmodel.ext.koin.viewModel
@@ -83,14 +82,14 @@ class MainActivityTest : AutoCloseKoinTest() {
         }
     }
 
-    fun assertRecyclerHasCount(@IdRes id: Int, expected: Int) {
+    private fun assertRecyclerHasCount(@IdRes id: Int, expected: Int) {
         onView(withId(id)).check(matches(withRecyclerViewCount(expected)))
     }
 
-    fun assertRepoAtPosition(repo: GitRepo, position: Int) {
-        onView(withRecyclerView(R.id.gitRepoRecycler).atPositionOnView(2, R.id.repoNameTextView))
+    private fun assertRepoAtPosition(repo: GitRepo, position: Int) {
+        onView(withRecyclerView(R.id.gitRepoRecycler).atPositionOnView(position, R.id.repoNameTextView))
             .check(matches(withText(repo.full_name)))
     }
 
-    fun withRecyclerView(@IdRes id: Int): RecyclerViewMatcher = RecyclerViewMatcher(id)
+    private fun withRecyclerView(@IdRes id: Int): RecyclerViewMatcher = RecyclerViewMatcher(id)
 }
