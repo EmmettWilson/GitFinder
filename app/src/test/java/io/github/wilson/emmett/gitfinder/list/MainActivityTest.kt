@@ -1,4 +1,4 @@
-package io.github.wilson.emmett.gitfinder
+package io.github.wilson.emmett.gitfinder.list
 
 import android.content.Intent
 import android.net.Uri
@@ -13,8 +13,12 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.nhaarman.mockitokotlin2.whenever
+import io.github.wilson.emmett.gitfinder.R
+import io.github.wilson.emmett.gitfinder.RecyclerViewMatcher
 import io.github.wilson.emmett.gitfinder.domain.GitRepo
 import io.github.wilson.emmett.gitfinder.search.SearchActivity
+import io.github.wilson.emmett.gitfinder.test
+import io.github.wilson.emmett.gitfinder.withRecyclerViewCount
 import kotlinx.android.synthetic.main.activity_main.*
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -127,9 +131,12 @@ class MainActivityTest : AutoCloseKoinTest() {
     }
 
     private fun assertRepoAtPosition(repo: GitRepo, position: Int) {
-        onView(withRecyclerView(R.id.gitRepoRecycler).atPositionOnView(position, R.id.repoName))
+        onView(withRecyclerView(R.id.gitRepoRecycler).atPositionOnView(position,
+            R.id.repoName
+        ))
             .check(matches(withText(repo.full_name)))
     }
 
-    private fun withRecyclerView(@IdRes id: Int): RecyclerViewMatcher = RecyclerViewMatcher(id)
+    private fun withRecyclerView(@IdRes id: Int): RecyclerViewMatcher =
+        RecyclerViewMatcher(id)
 }

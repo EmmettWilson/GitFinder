@@ -1,5 +1,6 @@
 package io.github.wilson.emmett.gitfinder
 
+import io.github.wilson.emmett.gitfinder.list.GitRepoViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module

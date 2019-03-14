@@ -1,8 +1,10 @@
-package io.github.wilson.emmett.gitfinder
+package io.github.wilson.emmett.gitfinder.list
 
 import androidx.lifecycle.MutableLiveData
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
+import io.github.wilson.emmett.gitfinder.ErrorStateManager
+import io.github.wilson.emmett.gitfinder.GitRepoRepository
 import io.github.wilson.emmett.gitfinder.domain.GitRepo
 import io.reactivex.schedulers.TestScheduler
 import org.junit.Assert.assertEquals
@@ -13,7 +15,11 @@ class GitRepoViewModelTest{
     private val errorStateManager = ErrorStateManager()
     private val mainThreadScheduler = TestScheduler()
 
-    private val testObject = GitRepoViewModel(gitRepoRepository, errorStateManager, mainThreadScheduler)
+    private val testObject = GitRepoViewModel(
+        gitRepoRepository,
+        errorStateManager,
+        mainThreadScheduler
+    )
 
     @Test
     fun getReposDelegatesToRepository() {

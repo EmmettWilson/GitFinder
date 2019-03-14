@@ -1,4 +1,4 @@
-package io.github.wilson.emmett.gitfinder
+package io.github.wilson.emmett.gitfinder.list
 
 import android.net.Uri
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import io.github.wilson.emmett.gitfinder.R
 import io.github.wilson.emmett.gitfinder.domain.GitRepo
 import kotlinx.android.synthetic.main.repo_list_item.view.*
 
@@ -36,7 +37,9 @@ class GitRepositoryRecyclerAdapter : RecyclerView.Adapter<RepoViewHolder>() {
 
         holder.itemView.setOnClickListener {
             val intent = CustomTabsIntent.Builder()
-                .setToolbarColor(ContextCompat.getColor(holder.context, R.color.silver))
+                .setToolbarColor(ContextCompat.getColor(holder.context,
+                    R.color.silver
+                ))
                 .build()
             intent.launchUrl(holder.context, Uri.parse(currentRepo.html_url))
         }

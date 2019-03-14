@@ -1,7 +1,9 @@
-package io.github.wilson.emmett.gitfinder
+package io.github.wilson.emmett.gitfinder.list
 
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
+import io.github.wilson.emmett.gitfinder.ErrorStateManager
+import io.github.wilson.emmett.gitfinder.GitRepoRepository
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Scheduler
 

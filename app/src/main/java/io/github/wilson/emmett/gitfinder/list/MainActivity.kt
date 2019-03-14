@@ -1,4 +1,4 @@
-package io.github.wilson.emmett.gitfinder
+package io.github.wilson.emmett.gitfinder.list
 
 import android.os.Bundle
 import android.view.Menu
@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import io.github.wilson.emmett.gitfinder.*
 import io.github.wilson.emmett.gitfinder.domain.GitRepo
 import io.github.wilson.emmett.gitfinder.search.SearchActivity
 import kotlinx.android.synthetic.main.activity_main.*
