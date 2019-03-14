@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
@@ -58,7 +57,9 @@ class SearchActivity : AppCompatActivity() {
             displayMetrics.widthPixels,
             0,
             displayMetrics.widthPixels + displayMetrics.heightPixels
-        )
+        ){
+            searchEditText.showKeyboard()
+        }
     }
 
     private fun finishWithAnimation() {

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 
 fun View.visible() {
     visibility = View.VISIBLE
@@ -21,12 +22,19 @@ fun View.invisible() {
     visibility = View.INVISIBLE
 }
 
-fun View.hideKeyboard(){
+fun View.hideKeyboard() {
     val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
 }
 
-fun View.circularReveal(xCoordinate: Int, yCoordinate: Int, endRadius: Int) {
+fun EditText.showKeyboard() {
+    if (requestFocus()) {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
+    }
+}
+
+fun View.circularReveal(xCoordinate: Int, yCoordinate: Int, endRadius: Int, postAnimationFunction: () -> Unit) {
     visible()
     val animator = ViewAnimationUtils.createCircularReveal(
         this,
@@ -37,6 +45,9 @@ fun View.circularReveal(xCoordinate: Int, yCoordinate: Int, endRadius: Int) {
     )
     animator.interpolator = AccelerateDecelerateInterpolator()
     animator.duration = resources.getInteger(android.R.integer.config_longAnimTime).toLong()
+    animator.addPostAnimationListener {
+        postAnimationFunction()
+    }
     animator.start()
 }
 
