@@ -5,6 +5,7 @@ import io.github.wilson.emmett.gitfinder.domain.databaseModule
 import io.github.wilson.emmett.gitfinder.githubService.apiModule
 import org.koin.android.ext.android.startKoin
 
+@Suppress("unused")
 class GithubFinderApp : Application() {
 
     override fun onCreate() {
