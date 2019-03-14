@@ -5,12 +5,12 @@ import io.github.wilson.emmett.gitfinder.githubService.OwnerDto
 import io.github.wilson.emmett.gitfinder.githubService.RepositoryDto
 import java.util.*
 
-fun GitRepo.Companion.test() = GitRepo(
+fun GitRepo.Companion.test(watchers : Int = random.nextInt()) = GitRepo(
         random.nextLong(),
         "name".appendRandom(),
         "fullname".appendRandom(),
         "html_url".appendRandom(),
-        random.nextInt(),
+        watchers,
         "language".appendRandom(),
         "description".appendRandom())
 

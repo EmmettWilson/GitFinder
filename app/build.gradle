@@ -59,6 +59,7 @@ dependencies {
     implementation 'android.arch.lifecycle:reactivestreams:1.1.1'
 
     kapt "androidx.room:room-compiler:2.0.0"
+    implementation"androidx.room:room-rxjava2:2.0.0"
     implementation "androidx.room:room-runtime:2.0.0"
 
     testImplementation 'junit:junit:4.12'
@@ -70,6 +71,7 @@ dependencies {
     testImplementation 'androidx.test:core:1.1.0'
     testImplementation 'androidx.test:runner:1.1.1'
     testImplementation 'androidx.test.ext:junit:1.1.0'
+    testImplementation 'com.jraska.livedata:testing-ktx:1.1.0'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.1.1'

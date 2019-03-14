@@ -1,9 +1,9 @@
 package io.github.wilson.emmett.gitfinder.domain
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import io.reactivex.Observable
 
 @Dao
 interface GitRepoDao {
@@ -12,5 +12,5 @@ interface GitRepoDao {
     fun insertRepos(gitRepos: List<GitRepo>)
 
     @Query("SELECT * FROM GitRepo")
-    fun getRepos() : LiveData<List<GitRepo>>
+    fun getRepos() : Observable<List<GitRepo>>
 }
