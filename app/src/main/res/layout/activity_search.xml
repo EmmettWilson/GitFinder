@@ -13,22 +13,25 @@
         android:padding="16dp"
         tools:context=".search.SearchActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
+    <TextView
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColorHint="@android:color/white"
-            android:hint="@string/organization_name">
+            android:text="@string/organization_name"
+            tools:labelFor="@id/searchEditText"
+            android:textColor="@color/white"/>
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
                 android:id="@+id/searchEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:maxLength="64"
                 android:inputType="text"
+                android:backgroundTint="@color/white"
                 android:textColor="@color/white"
-                android:imeOptions="actionSearch"/>
+                android:imeOptions="actionSearch"
+                tools:ignore="Autofill"/>
 
         <Button
                 android:id="@+id/searchButton"
@@ -39,9 +42,5 @@
                 android:backgroundTint="@color/onyx"
                 android:textColor="@color/white"
                 android:text="@string/search"/>
-
-
-    </com.google.android.material.textfield.TextInputLayout>
-
 
 </LinearLayout>
