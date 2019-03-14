@@ -1,6 +1,11 @@
 package io.github.wilson.emmett.gitfinder
 
+import android.animation.Animator
+import android.app.Activity
+import android.util.DisplayMetrics
 import android.view.View
+import android.view.ViewAnimationUtils
+import android.view.animation.AccelerateDecelerateInterpolator
 
 fun View.visible() {
     visibility = View.VISIBLE
@@ -12,4 +17,61 @@ fun View.gone() {
 
 fun View.invisible() {
     visibility = View.INVISIBLE
+}
+
+fun View.circularReveal(xCoordinate: Int, yCoordinate: Int, endRadius: Int) {
+    visible()
+    val animator = ViewAnimationUtils.createCircularReveal(
+        this,
+        xCoordinate,
+        yCoordinate,
+        0f,
+        endRadius.toFloat()
+    )
+    animator.interpolator = AccelerateDecelerateInterpolator()
+    animator.duration = resources.getInteger(android.R.integer.config_longAnimTime).toLong()
+    animator.start()
+}
+
+fun View.circularCollapse(xCoordinate: Int, yCoordinate: Int, startRadius: Int, postAnimationFunction: () -> Unit) {
+    val anim = ViewAnimationUtils.createCircularReveal(
+        this,
+        xCoordinate,
+        yCoordinate,
+        startRadius.toFloat(),
+        0f
+    )
+
+    anim.interpolator = AccelerateDecelerateInterpolator()
+    anim.duration = resources.getInteger(android.R.integer.config_mediumAnimTime).toLong()
+    anim.addPostAnimationListener {
+        invisible()
+        postAnimationFunction()
+    }
+    anim.start()
+}
+
+fun View.onAttachedToWindow(block: () -> Unit) {
+    addOnAttachStateChangeListener(object : View.OnAttachStateChangeListener {
+        override fun onViewDetachedFromWindow(v: View) = Unit
+        override fun onViewAttachedToWindow(v: View) {
+            block()
+            removeOnAttachStateChangeListener(this)
+        }
+    })
+}
+
+fun Activity.measureDisplay(): DisplayMetrics {
+    val displayMetrics = DisplayMetrics()
+    windowManager.defaultDisplay.getMetrics(displayMetrics)
+    return displayMetrics
+}
+
+fun Animator.addPostAnimationListener(block: () -> Unit) {
+    addListener(object : Animator.AnimatorListener {
+        override fun onAnimationRepeat(animation: Animator?) = Unit
+        override fun onAnimationEnd(animation: Animator?) = block()
+        override fun onAnimationCancel(animation: Animator?) = Unit
+        override fun onAnimationStart(animation: Animator?) = Unit
+    })
 }

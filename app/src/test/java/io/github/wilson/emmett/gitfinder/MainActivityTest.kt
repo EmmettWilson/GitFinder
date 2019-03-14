@@ -14,6 +14,7 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.nhaarman.mockitokotlin2.whenever
 import io.github.wilson.emmett.gitfinder.domain.GitRepo
+import io.github.wilson.emmett.gitfinder.search.SearchActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -50,7 +51,7 @@ class MainActivityTest : AutoCloseKoinTest() {
         scenario.onActivity {
 
             onView(withId(R.id.gitRepoRecycler)).check(matches(withEffectiveVisibility(Visibility.INVISIBLE)))
-            onView(withId(R.id.emptyView)).check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
+            onView(withId(R.id.emptyView)).check(matches(withEffectiveVisibility(Visibility.GONE)))
 
             mutableLiveData.postValue(listOf(GitRepo.test(), GitRepo.test(), GitRepo.test()))
 
@@ -100,6 +101,24 @@ class MainActivityTest : AutoCloseKoinTest() {
             val startedActivity = shadowOf(it).peekNextStartedActivity()
             assertEquals(Intent.ACTION_VIEW, startedActivity.action)
             assertEquals(Uri.parse(expected.html_url), startedActivity.data)
+        }
+    }
+
+    @Test
+    fun clickingSearchIconStartsSearchActivity() {
+        val mutableLiveData = MutableLiveData<List<GitRepo>>()
+        whenever(gitRepoViewModel.gitRepositories).thenReturn(mutableLiveData)
+
+        val scenario = ActivityScenario.launch(MainActivity::class.java)
+        scenario.moveToState(Lifecycle.State.RESUMED)
+
+        scenario.onActivity {
+            val shadowActivity = shadowOf(it)
+            shadowActivity.clickMenuItem(R.id.action_search)
+
+            val startedActivity = shadowActivity.peekNextStartedActivity()
+
+            assertEquals(SearchActivity::class.java.name, startedActivity.component!!.className)
         }
     }
 

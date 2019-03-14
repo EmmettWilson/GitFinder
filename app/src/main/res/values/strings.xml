@@ -3,4 +3,6 @@
     <string name="emptyTextMessage">There\'s nothing here</string>
     <string name="emptyTextInstructions">Search for another user…</string>
     <string name="retry">Retry</string>
+    <string name="search">Search</string>
+    <string name="organization_name">Organization Name</string>
 </resources>
