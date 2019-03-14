@@ -2,10 +2,12 @@ package io.github.wilson.emmett.gitfinder
 
 import android.animation.Animator
 import android.app.Activity
+import android.content.Context
 import android.util.DisplayMetrics
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.inputmethod.InputMethodManager
 
 fun View.visible() {
     visibility = View.VISIBLE
@@ -17,6 +19,11 @@ fun View.gone() {
 
 fun View.invisible() {
     visibility = View.INVISIBLE
+}
+
+fun View.hideKeyboard(){
+    val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
 }
 
 fun View.circularReveal(xCoordinate: Int, yCoordinate: Int, endRadius: Int) {

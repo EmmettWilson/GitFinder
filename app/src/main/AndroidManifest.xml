@@ -15,7 +15,7 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".search.SearchActivity"
-                android:theme="@style/AppTheme.Transparent"/>
+                android:theme="@style/GreyInterstitialTheme"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

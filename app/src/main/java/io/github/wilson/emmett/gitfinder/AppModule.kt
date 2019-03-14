@@ -9,7 +9,7 @@ const val MAIN_THREAD_SCHEDULER = "MAIN_THREAD_SCHEDULER"
 val appModule = module {
 
     single {
-        GitRepoRepository(get(), get())
+        GitRepoRepository(get())
     }
 
     single(MAIN_THREAD_SCHEDULER) {

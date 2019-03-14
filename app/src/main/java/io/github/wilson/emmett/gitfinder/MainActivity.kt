@@ -9,15 +9,12 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import io.github.wilson.emmett.gitfinder.domain.GitRepo
-import io.github.wilson.emmett.gitfinder.githubService.SearchCommandFactory
 import io.github.wilson.emmett.gitfinder.search.SearchActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
     private val gitRepoViewModel: GitRepoViewModel by viewModel()
-    private val searchCommandFactory: SearchCommandFactory by inject()
     private val gitRepositoryRecyclerAdapter = GitRepositoryRecyclerAdapter()
     private val errorSnackBar: Snackbar? = null
 
@@ -39,12 +36,23 @@ class MainActivity : AppCompatActivity() {
         gitRepoViewModel.getErrorState().observe(this, Observer {
             showError(it)
         })
-
-        searchButton.setOnClickListener {
-            errorSnackBar?.dismiss()
-            searchCommandFactory.makeCommand(searchText.text.toString()).execute()
-        }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item?.itemId == R.id.action_search) {
+            errorSnackBar?.dismiss()
+            SearchActivity.launch(this)
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
 
     private fun showError(errorState: ErrorState) {
         Snackbar.make(activity_main_constraint, errorState.message, Snackbar.LENGTH_INDEFINITE).apply {
@@ -55,20 +63,6 @@ class MainActivity : AppCompatActivity() {
                 errorState.retryCommand.execute()
             }
         }.show()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item?.itemId == R.id.action_search) {
-            SearchActivity.launch(this)
-            return true
-        }
-
-        return super.onOptionsItemSelected(item)
     }
 
     private fun showRepos(repos: List<GitRepo>) {
