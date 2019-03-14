@@ -35,7 +35,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     style="@style/Base.TextAppearance.AppCompat.Headline"
-                    android:labelFor="@+id/emptyViewGraphic"
                     android:text="@string/emptyTextMessage"/>
 
             <ImageView
@@ -45,7 +44,8 @@
                     android:layout_margin="16dp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
-                    android:src="@drawable/empty_view_graphic"/>
+                    android:src="@drawable/empty_view_graphic"
+                    tools:ignore="ContentDescription"/>
 
             <TextView
                     android:id="@+id/emptyViewInstructions"
